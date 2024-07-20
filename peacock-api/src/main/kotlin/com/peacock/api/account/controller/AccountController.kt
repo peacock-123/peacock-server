@@ -1,19 +1,35 @@
 package com.peacock.api.account.controller
 
-import com.peacock.core.domain.account.Account
-import com.peacock.core.domain.account.AccountRepository
-import org.springframework.data.domain.Pageable
-import org.springframework.web.bind.annotation.GetMapping
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class AccountController(
-    private val accountRepository: AccountRepository,
-) {
-    @GetMapping("/test")
-    fun test(pageable: Pageable): List<Account> {
-        val a = accountRepository.findAll(pageable).toList()
+@RequestMapping("/api/v1/accounts")
+class AccountController {
+    private val httpSessionSecurityContextRepository = HttpSessionSecurityContextRepository()
 
-        return a
+    @PostMapping("/sign-up")
+    fun singUp(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        authentication: Authentication?,
+    ) {
+        val token =
+            UsernamePasswordAuthenticationToken.authenticated(
+                "user",
+                "pass",
+                listOf(),
+            )
+        val context = SecurityContextHolder.createEmptyContext()
+        context.authentication = token
+        SecurityContextHolder.setContext(context)
+        httpSessionSecurityContextRepository.saveContext(context, request, response)
     }
 }
