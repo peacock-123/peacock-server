@@ -1,1 +1,3 @@
-rootProject.name = "api"
+rootProject.name = "server"
+
+include("peacock-core", "peacock-api")
