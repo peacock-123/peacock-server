@@ -1,6 +1,8 @@
 package com.peacock.support.authentication.resolver
 
+import com.peacock.core.domain.account.vo.AuthProvider
 import com.peacock.core.domain.vo.Email
+import com.peacock.support.authentication.AuthCode
 import com.peacock.support.authentication.KakaoHttpClient
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
@@ -12,7 +14,7 @@ class KakaoAuthenticationCodeResolver(
     @Value("\${kakao.redirectUri}") private val redirectUri: String,
     private val kakaoHttpClient: KakaoHttpClient,
 ) : AuthenticationCodeResolver {
-    override fun resolve(code: String): Email {
+    override fun resolve(code: AuthCode): Email {
         val accessToken =
             kakaoHttpClient
                 .getToken(
@@ -20,13 +22,15 @@ class KakaoAuthenticationCodeResolver(
                     clientId = clientId,
                     redirectUri = redirectUri,
                     clientSecret = clientSecret,
-                    code = code,
+                    code = code.value,
                 ).accessToken
 
         val profile = getProfile(accessToken)
 
         return Email(profile.kakaoAccount.email)
     }
+
+    override fun supports(provider: AuthProvider): Boolean = provider == AuthProvider.KAKAO
 
     private fun getProfile(accessToken: String) = kakaoHttpClient.getProfile("Bearer $accessToken")
 

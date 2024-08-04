@@ -18,3 +18,8 @@ server:
     session:
       cookie:
         max-age: 30d
+
+kakao:
+  clientId: ${KAKAO_CLIENT_ID}
+  clientSecret: ${KAKAO_CLIENT_SECRET}
+  redirectUri: ${KAKAO_REDIRECT_URI}
