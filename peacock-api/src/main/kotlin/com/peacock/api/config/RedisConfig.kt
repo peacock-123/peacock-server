@@ -10,7 +10,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @Configuration(proxyBeanMethods = false)
 @EnableRedisHttpSession(
     redisNamespace = "\${spring.session.redis.namespace}",
-    maxInactiveIntervalInSeconds = 3600,
+    maxInactiveIntervalInSeconds = 86_400,
 )
 class RedisConfig {
     @Bean
