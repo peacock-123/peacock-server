@@ -1,33 +1,27 @@
 package com.peacock.support.authentication
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.RequestHeader
-import org.springframework.web.service.annotation.HttpExchange
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.service.annotation.PostExchange
 
-@HttpExchange("https://kauth.kakao.com")
 interface KakaoHttpClient {
-    @PostExchange("/oauth/token")
-    fun getToken(request: KakaoAccessTokenRequest): KakaoAccessTokenResponse
-
-    data class KakaoAccessTokenRequest(
-        @JsonProperty("grant_type")
-        val grantType: String,
-        @JsonProperty("client_id")
-        val clientId: String,
-        @JsonProperty("redirect_uri")
-        val redirectUri: String,
-        val code: String,
-        @JsonProperty("client_secret")
-        val clientSecret: String,
-    )
+    @PostExchange("https://kauth.kakao.com/oauth/token", contentType = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    fun getToken(
+        @RequestParam("grant_type") grantType: String,
+        @RequestParam("client_id") clientId: String,
+        @RequestParam("redirect_uri") redirectUri: String,
+        @RequestParam("code") code: String,
+        @RequestParam("client_secret") clientSecret: String,
+    ): KakaoAccessTokenResponse
 
     data class KakaoAccessTokenResponse(
         @JsonProperty("access_token")
         val accessToken: String,
     )
 
-    @PostExchange("/v2/user/me")
+    @PostExchange("https://kapi.kakao.com/v2/user/me", contentType = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     fun getProfile(
         @RequestHeader("Authorization") accessToken: String,
     ): KakaoProfileResponse

@@ -16,13 +16,11 @@ class KakaoAuthenticationCodeResolver(
         val accessToken =
             kakaoHttpClient
                 .getToken(
-                    KakaoHttpClient.KakaoAccessTokenRequest(
-                        grantType = REQUIRED_GRANT_TYPE,
-                        clientId = clientId,
-                        redirectUri = redirectUri,
-                        clientSecret = clientSecret,
-                        code = code,
-                    ),
+                    grantType = REQUIRED_GRANT_TYPE,
+                    clientId = clientId,
+                    redirectUri = redirectUri,
+                    clientSecret = clientSecret,
+                    code = code,
                 ).accessToken
 
         val profile = getProfile(accessToken)
@@ -30,7 +28,7 @@ class KakaoAuthenticationCodeResolver(
         return Email(profile.kakaoAccount.email)
     }
 
-    private fun getProfile(accessToken: String): KakaoHttpClient.KakaoProfileResponse = kakaoHttpClient.getProfile("Bearer $accessToken")
+    private fun getProfile(accessToken: String) = kakaoHttpClient.getProfile("Bearer $accessToken")
 
     companion object {
         private const val REQUIRED_GRANT_TYPE = "authorization_code"
