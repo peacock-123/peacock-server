@@ -1,5 +1,6 @@
 package com.peacock.support.authentication.resolver
 
+import com.peacock.support.authentication.AuthCode
 import com.peacock.support.authentication.KakaoHttpClient
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
@@ -30,7 +31,7 @@ class KakaoAuthenticationCodeResolverTest {
     fun profile() {
         // given
         // https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}
-        val code = "code"
+        val code = AuthCode("code")
 
         // when
         val expected = resolver.resolve(code)

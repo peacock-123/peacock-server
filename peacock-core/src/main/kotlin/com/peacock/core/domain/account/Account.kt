@@ -11,5 +11,17 @@ data class Account(
     @Id
     val id: AccountId,
     val email: Email,
-    val provider: AuthProvider,
-)
+    val authProvider: AuthProvider,
+) {
+    companion object {
+        fun create(
+            email: Email,
+            provider: AuthProvider,
+        ): Account =
+            Account(
+                id = AccountId(0),
+                email = email,
+                authProvider = provider,
+            )
+    }
+}

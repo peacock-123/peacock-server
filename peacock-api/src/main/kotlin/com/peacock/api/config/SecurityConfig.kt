@@ -21,7 +21,7 @@ class SecurityConfig {
             requestCache { requestCache = NullRequestCache() }
 
             authorizeHttpRequests {
-                authorize("/api/v1/accounts/sign-up", permitAll)
+                authorize("/api/v1/accounts/sign-in", permitAll)
             }
         }
 
