@@ -1,12 +1,13 @@
 package com.peacock.core.domain.recruitment.vo
 
+import com.peacock.core.domain.vo.PositiveInt
 import org.springframework.data.relational.core.mapping.Column
 
 class RecruitmentInterval(
     @Column("interval_type")
     val type: Type,
     @Column("interval_frequency")
-    val frequency: Int?,
+    val frequency: PositiveInt,
 ) {
     enum class Type(
         val displayName: String,
