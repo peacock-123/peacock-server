@@ -21,6 +21,8 @@ class SecurityConfig {
             requestCache { requestCache = NullRequestCache() }
 
             authorizeHttpRequests {
+                authorize("/swagger-ui/**", permitAll)
+                authorize("/v3/api-docs/**", permitAll)
                 authorize("/api/v1/accounts/sign-in", permitAll)
             }
         }

@@ -23,3 +23,6 @@ kakao:
   clientId: ${KAKAO_CLIENT_ID}
   clientSecret: ${KAKAO_CLIENT_SECRET}
   redirectUri: ${KAKAO_REDIRECT_URI}
+
+springdoc:
+  packagesToScan: com.peacock.api
