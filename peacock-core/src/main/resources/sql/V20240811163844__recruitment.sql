@@ -18,4 +18,18 @@ create table recruitment_position_group
     recruitment_id bigint not null,
     count          int    not null,
     sequence       int    not null
-)
+);
+
+create table recruitment_position
+(
+    recruitment_position_group_id bigint not null,
+    position_id                   bigint not null,
+    sequence                      int    not null
+);
+
+create table recruitment_skill
+(
+    recruitment_position_group_id bigint not null,
+    skill_id                      bigint not null,
+    sequence                      int    not null
+);
