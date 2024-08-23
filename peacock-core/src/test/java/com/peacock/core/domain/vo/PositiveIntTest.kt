@@ -29,7 +29,7 @@ class PositiveIntTest {
             assertThrows<IllegalArgumentException> { PositiveInt(value) }
 
         // then
-        assert(result.message == "PositiveInt must be greater than 0")
+        assert(result.message == "반드시 양수여야 합니다")
     }
 
     @Test
@@ -42,6 +42,6 @@ class PositiveIntTest {
         val result = assertThrows<IllegalArgumentException> { PositiveInt(value) }
 
         // then
-        assert(result.message == "PositiveInt must be greater than 0")
+        assert(result.message == "반드시 양수여야 합니다")
     }
 }

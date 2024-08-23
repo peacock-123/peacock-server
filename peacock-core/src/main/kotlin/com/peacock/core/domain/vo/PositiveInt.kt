@@ -5,6 +5,6 @@ value class PositiveInt(
     val value: Int,
 ) {
     init {
-        require(value > 0) { "PositiveInt must be greater than 0" }
+        require(value > 0) { "반드시 양수여야 합니다" }
     }
 }

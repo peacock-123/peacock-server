@@ -34,8 +34,8 @@ data class CreateRecruitmentRequest(
 
     data class PositionGroup(
         val count: Int,
-        val positions: List<PositionId>,
-        val skills: List<SkillId>,
+        val positions: List<Long>,
+        val skills: List<Long>,
     )
 
     fun toCommand(sessionId: SessionId) =
@@ -48,13 +48,13 @@ data class CreateRecruitmentRequest(
             processType = processType,
             endedAt = endedAt,
             duration = duration,
-            interval = RecruitmentInterval(type = interval.type, frequency = PositiveInt(interval.frequency)),
+            interval = RecruitmentInterval(type = interval.type, frequency = interval.frequency),
             positionGroup =
                 positionGroup.map {
                     CreateRecruitmentCommand.PositionGroup(
                         count = PositiveInt(it.count),
-                        positions = it.positions,
-                        skills = it.skills,
+                        positions = it.positions.map(::PositionId),
+                        skills = it.skills.map(::SkillId),
                     )
                 },
         )

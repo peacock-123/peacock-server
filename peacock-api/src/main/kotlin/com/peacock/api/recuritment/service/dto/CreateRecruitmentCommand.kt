@@ -47,8 +47,8 @@ data class CreateRecruitmentCommand(
                 positionGroup.map { group ->
                     RecruitmentPositionGroup(
                         count = group.count,
-                        positions = group.positions.map { RecruitmentPosition(it) },
-                        skills = group.skills.map { RecruitmentSkill(it) },
+                        positions = group.positions.map { RecruitmentPosition(positionId = it) },
+                        skills = group.skills.map { RecruitmentSkill(skillId = it) },
                     )
                 },
         )

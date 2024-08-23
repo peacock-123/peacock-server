@@ -35,4 +35,10 @@ data class Recruitment(
     @MappedCollection(idColumn = "recruitment_id", keyColumn = "sequence")
     val positionGroup: List<RecruitmentPositionGroup>,
     val authorId: AccountId,
-)
+) {
+    init {
+        require(title.isNotBlank()) { "제목은 필수입니다" }
+        require(duration.isNotBlank()) { "모집 기간은 필수입니다" }
+        require(positionGroup.isNotEmpty()) { "포지션 그룹은 필수입니다" }
+    }
+}
