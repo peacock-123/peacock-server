@@ -1,6 +1,7 @@
 package com.peacock.api.recuritment.controller.dto
 
 import com.peacock.api.recuritment.service.dto.CreateRecruitmentCommand
+import com.peacock.api.session.SessionId
 import com.peacock.core.domain.position.vo.PositionId
 import com.peacock.core.domain.recruitment.vo.RecruitmentInterval
 import com.peacock.core.domain.recruitment.vo.RecruitmentMethod
@@ -37,8 +38,9 @@ data class CreateRecruitmentRequest(
         val skills: List<SkillId>,
     )
 
-    fun toCommand() =
+    fun toCommand(sessionId: SessionId) =
         CreateRecruitmentCommand(
+            authorId = sessionId.toAccountId(),
             title = title,
             content = content,
             purpose = purpose,

@@ -17,11 +17,11 @@ import java.time.LocalDateTime
 @Table
 data class Recruitment(
     @Id
-    val id: RecruitmentId,
+    val id: RecruitmentId = RecruitmentId(0),
     @CreatedDate
-    val createdAt: LocalDateTime,
+    val createdAt: LocalDateTime = LocalDateTime.now(),
     @LastModifiedDate
-    val updatedAt: LocalDateTime,
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
     val title: String,
     val content: String,
     val purpose: RecruitmentPurpose,

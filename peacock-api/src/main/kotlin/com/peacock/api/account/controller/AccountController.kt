@@ -1,7 +1,8 @@
 package com.peacock.api.account.controller
 
+import com.peacock.api.account.controller.dto.SignUpRequest
 import com.peacock.api.account.service.AccountService
-import com.peacock.core.domain.account.vo.AuthProvider
+import com.peacock.api.session.SessionId
 import com.peacock.support.authentication.AuthCode
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -19,11 +20,6 @@ class AccountController(
 ) {
     private val httpSessionSecurityContextRepository = HttpSessionSecurityContextRepository()
 
-    data class SignUpRequest(
-        val code: String,
-        val provider: AuthProvider,
-    )
-
     @PostMapping("/sign-in")
     fun signIn(
         request: HttpServletRequest,
@@ -36,7 +32,12 @@ class AccountController(
                 provider = signUpRequest.provider,
             )
 
-        val token = UsernamePasswordAuthenticationToken.authenticated(accountId, "", emptySet())
+        val token =
+            UsernamePasswordAuthenticationToken.authenticated(
+                SessionId(accountId.value),
+                "",
+                emptySet(),
+            )
         val context = SecurityContextHolder.createEmptyContext()
         context.authentication = token
         SecurityContextHolder.setContext(context)

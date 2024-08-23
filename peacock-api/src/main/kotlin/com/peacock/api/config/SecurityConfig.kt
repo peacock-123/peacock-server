@@ -24,7 +24,7 @@ class SecurityConfig {
                 authorize("/swagger-ui/**", permitAll)
                 authorize("/v3/api-docs/**", permitAll)
                 authorize("/api/v1/accounts/sign-in", permitAll)
-                authorize(anyRequest, permitAll)
+                authorize(anyRequest, authenticated)
             }
         }
 
