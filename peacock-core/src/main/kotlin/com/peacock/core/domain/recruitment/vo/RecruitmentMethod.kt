@@ -7,6 +7,10 @@ data class RecruitmentMethod(
     val type: Type,
     val contact: String,
 ) {
+    init {
+        require(contact.isNotBlank()) { "contact must not be blank" }
+    }
+
     enum class Type(
         val displayName: String,
     ) {

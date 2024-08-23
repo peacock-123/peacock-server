@@ -1,11 +1,14 @@
 package com.peacock.core.domain.recruitment
 
+import com.peacock.core.domain.account.vo.AccountId
 import com.peacock.core.domain.recruitment.vo.RecruitmentId
 import com.peacock.core.domain.recruitment.vo.RecruitmentInterval
 import com.peacock.core.domain.recruitment.vo.RecruitmentMethod
 import com.peacock.core.domain.recruitment.vo.RecruitmentProcessType
 import com.peacock.core.domain.recruitment.vo.RecruitmentPurpose
+import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.relational.core.mapping.Embedded
 import org.springframework.data.relational.core.mapping.MappedCollection
 import org.springframework.data.relational.core.mapping.Table
@@ -15,6 +18,10 @@ import java.time.LocalDateTime
 data class Recruitment(
     @Id
     val id: RecruitmentId,
+    @CreatedDate
+    val createdAt: LocalDateTime,
+    @LastModifiedDate
+    val updatedAt: LocalDateTime,
     val title: String,
     val content: String,
     val purpose: RecruitmentPurpose,
@@ -27,4 +34,5 @@ data class Recruitment(
     val interval: RecruitmentInterval,
     @MappedCollection(idColumn = "recruitment_id", keyColumn = "sequence")
     val positionGroup: List<RecruitmentPositionGroup>,
+    val authorId: AccountId,
 )
