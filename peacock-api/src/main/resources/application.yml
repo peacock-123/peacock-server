@@ -26,3 +26,6 @@ kakao:
 
 springdoc:
   packagesToScan: com.peacock.api
+
+logging:
+  config: 'classpath:logback-loki.xml'
