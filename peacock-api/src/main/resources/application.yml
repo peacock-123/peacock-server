@@ -29,3 +29,13 @@ springdoc:
 
 logging:
   config: 'classpath:logback-loki.xml'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
