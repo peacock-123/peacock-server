@@ -1,4 +1,7 @@
 spring:
+  threads:
+    virtual:
+      enabled: true
   session:
     redis:
       namespace: ${REDIS_NAMESPACE}
