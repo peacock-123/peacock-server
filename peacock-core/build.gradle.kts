@@ -4,9 +4,6 @@ plugins {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-    implementation("org.jooq:jooq:3.19.10")
-    implementation("org.jooq:jooq-meta:3.19.10")
-    implementation("org.jooq:jooq-codegen:3.19.10")
     implementation("org.springframework.boot:spring-boot-starter-jooq")
 
     jooqCodegen("org.postgresql:postgresql")
@@ -41,9 +38,12 @@ jooq {
             generate {
                 isDeprecated = false
                 isTables = true
-                isRecords = false
                 isIndexes = false
-                isDefaultCatalog = false
+                isKotlinNotNullPojoAttributes = true
+                isKotlinNotNullRecordAttributes = true
+                isKotlinNotNullInterfaceAttributes = true
+                isKotlinDefaultedNullablePojoAttributes = false
+                isKotlinDefaultedNullableRecordAttributes = false
             }
 
             database {
@@ -56,6 +56,14 @@ jooq {
                 packageName = "com.peacock.core.mata"
                 directory = "build/generated-sources/jooq"
             }
+        }
+    }
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDirs("src/main/kotlin", "build/generated-sources/jooq")
         }
     }
 }

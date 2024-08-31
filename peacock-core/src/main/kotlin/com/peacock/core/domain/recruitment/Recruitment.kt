@@ -6,6 +6,7 @@ import com.peacock.core.domain.recruitment.vo.RecruitmentInterval
 import com.peacock.core.domain.recruitment.vo.RecruitmentMethod
 import com.peacock.core.domain.recruitment.vo.RecruitmentProcessType
 import com.peacock.core.domain.recruitment.vo.RecruitmentPurpose
+import com.peacock.core.domain.recruitment.vo.RecruitmentType
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -22,6 +23,7 @@ data class Recruitment(
     val createdAt: LocalDateTime = LocalDateTime.now(),
     @LastModifiedDate
     val updatedAt: LocalDateTime = LocalDateTime.now(),
+    val type: RecruitmentType,
     val title: String,
     val content: String,
     val purpose: RecruitmentPurpose,

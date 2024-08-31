@@ -3,6 +3,7 @@ create table recruitment
     id                 bigserial primary key,
     created_at         timestamp with time zone not null,
     updated_at         timestamp with time zone not null,
+    type               varchar(50)              not null,
     title              varchar(255)             not null,
     content            text                     not null,
     purpose            varchar(50)              not null,
@@ -18,6 +19,7 @@ create table recruitment
 
 create table recruitment_position_group
 (
+    id             bigserial primary key,
     created_at     timestamp with time zone not null,
     updated_at     timestamp with time zone not null,
     recruitment_id bigint                   not null,

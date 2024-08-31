@@ -7,11 +7,13 @@ import com.peacock.core.domain.recruitment.vo.RecruitmentInterval
 import com.peacock.core.domain.recruitment.vo.RecruitmentMethod
 import com.peacock.core.domain.recruitment.vo.RecruitmentProcessType
 import com.peacock.core.domain.recruitment.vo.RecruitmentPurpose
+import com.peacock.core.domain.recruitment.vo.RecruitmentType
 import com.peacock.core.domain.skill.vo.SkillId
 import com.peacock.core.domain.vo.PositiveInt
 import java.time.LocalDateTime
 
 data class CreateRecruitmentRequest(
+    val type: RecruitmentType,
     val title: String,
     val content: String,
     val purpose: RecruitmentPurpose,
@@ -41,6 +43,7 @@ data class CreateRecruitmentRequest(
     fun toCommand(sessionId: SessionId) =
         CreateRecruitmentCommand(
             authorId = sessionId.toAccountId(),
+            type = type,
             title = title,
             content = content,
             purpose = purpose,

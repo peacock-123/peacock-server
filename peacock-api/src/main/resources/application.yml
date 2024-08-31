@@ -30,9 +30,6 @@ kakao:
 springdoc:
   packagesToScan: com.peacock.api
 
-logging:
-  config: 'classpath:logback-loki.xml'
-
 management:
   endpoints:
     web:
@@ -42,3 +39,7 @@ management:
     metrics:
       export:
         enabled: true
+
+#logging:
+#  level:
+#    org.jooq.tools.LoggerListener: DEBUG
