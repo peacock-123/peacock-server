@@ -3,12 +3,12 @@ package com.peacock.api.recuritment.repository
 import com.peacock.api.recuritment.repository.dto.RecruitmentSearchCondition
 import com.peacock.api.recuritment.repository.dto.RecruitmentSearchResult
 import com.peacock.core.extension.asNonNullField
-import com.peacock.core.mata.tables.references.RECRUITMENT
-import com.peacock.core.mata.tables.references.RECRUITMENT_POSITION
-import com.peacock.core.mata.tables.references.RECRUITMENT_POSITION_GROUP
-import com.peacock.core.mata.tables.references.RECRUITMENT_SKILL
 import org.jooq.DSLContext
 import org.jooq.Records
+import org.jooq.generated.tables.references.RECRUITMENT
+import org.jooq.generated.tables.references.RECRUITMENT_POSITION
+import org.jooq.generated.tables.references.RECRUITMENT_POSITION_GROUP
+import org.jooq.generated.tables.references.RECRUITMENT_SKILL
 import org.jooq.impl.DSL.arrayAgg
 
 class RecruitmentJooqRepositoryImpl(
