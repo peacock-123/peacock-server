@@ -14,6 +14,9 @@ dependencies {
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
+    testRuntimeOnly("com.h2database:h2")
+
+    testImplementation("org.flywaydb:flyway-core")
     testImplementation("org.springframework.security:spring-security-test")
 }
 
