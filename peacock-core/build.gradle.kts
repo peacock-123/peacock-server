@@ -1,3 +1,4 @@
+import org.jooq.meta.jaxb.ForcedType
 import org.jooq.meta.jaxb.Generate
 
 plugins {
@@ -37,6 +38,28 @@ tasks {
                     isKeys = false
                     isDefaultCatalog = false
                 }
+
+            database.withForcedTypes(
+                ForcedType().apply {
+                    name = "LOCALDATETIME"
+                    includeTypes = "TIMESTAMP.*"
+                },
+                ForcedType().apply {
+                    userType = "com.peacock.core.domain.recruitment.vo.RecruitmentType"
+                    isEnumConverter = true
+                    includeExpression = "recruitment\\.type"
+                },
+                ForcedType().apply {
+                    userType = "com.peacock.core.domain.recruitment.vo.RecruitmentPurpose"
+                    isEnumConverter = true
+                    includeExpression = "recruitment\\.purpose"
+                },
+                ForcedType().apply {
+                    userType = "com.peacock.core.domain.recruitment.vo.RecruitmentProcessType"
+                    isEnumConverter = true
+                    includeExpression = "recruitment\\.process_type"
+                },
+            )
         }
     }
 }
