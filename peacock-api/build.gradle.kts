@@ -18,6 +18,7 @@ dependencies {
 
     testImplementation("org.flywaydb:flyway-core")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.0.23")
 }
 
 tasks.bootJar {
