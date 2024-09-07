@@ -1,12 +1,20 @@
 spring:
+  session:
+    redis:
+      namespace: test
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_LOWER=TRUE;MODE=PostgreSQL
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;MODE=PostgreSQL
     username: sa
     driver-class-name: org.h2.Driver
   jooq:
     sql-dialect: H2
   flyway:
     defaultSchema: public
+
+kakao:
+  clientId: 'client-id'
+  clientSecret: 'client-secret'
+  redirectUri: 'redirect-url'
 
 #logging:
 #  level:
