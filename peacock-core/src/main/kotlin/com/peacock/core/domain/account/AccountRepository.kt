@@ -1,8 +1,8 @@
 package com.peacock.core.domain.account
 
 import com.peacock.core.domain.vo.Email
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.repository.ListCrudRepository
 
-interface AccountRepository : CrudRepository<Account, Long> {
+interface AccountRepository : ListCrudRepository<Account, Long> {
     fun findByEmail(email: Email): Account?
 }

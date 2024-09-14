@@ -1,5 +1,5 @@
 package com.peacock.core.domain.recruitment
 
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.repository.ListCrudRepository
 
-interface RecruitmentRepository : CrudRepository<Recruitment, Long>
+interface RecruitmentRepository : ListCrudRepository<Recruitment, Long>
