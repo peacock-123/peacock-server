@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -24,7 +25,7 @@ class AccountController(
     fun signIn(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        signUpRequest: SignUpRequest,
+        @RequestBody signUpRequest: SignUpRequest,
     ) {
         val accountId =
             accountService.signIn(

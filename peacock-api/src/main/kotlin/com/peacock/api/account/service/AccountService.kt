@@ -6,14 +6,14 @@ import com.peacock.core.domain.account.vo.AccountId
 import com.peacock.core.domain.account.vo.AuthProvider
 import com.peacock.core.domain.vo.Email
 import com.peacock.support.authentication.AuthCode
-import com.peacock.support.authentication.AuthenticationCodeManager
+import com.peacock.support.authentication.AuthenticationCodeResolverFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(readOnly = true)
 class AccountService(
-    private val manager: AuthenticationCodeManager,
+    private val authenticationCodeResolverFactory: AuthenticationCodeResolverFactory,
     private val accountRepository: AccountRepository,
 ) {
     @Transactional
@@ -21,7 +21,7 @@ class AccountService(
         code: AuthCode,
         provider: AuthProvider,
     ): AccountId {
-        val email = manager.resolve(provider, code)
+        val email = authenticationCodeResolverFactory.getResolver(provider).resolve(code)
         val account = accountRepository.findByEmail(email) ?: signUp(email, provider)
 
         return account.id
