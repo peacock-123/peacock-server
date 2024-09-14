@@ -14,6 +14,7 @@ import org.jooq.generated.tables.references.RECRUITMENT_POSITION_GROUP
 import org.jooq.generated.tables.references.RECRUITMENT_SKILL
 import org.jooq.impl.DSL
 import org.jooq.impl.DSL.arrayAgg
+import org.jooq.impl.DSL.sum
 import org.springframework.data.domain.Page
 import org.springframework.data.support.PageableExecutionUtils
 
@@ -29,7 +30,9 @@ class RecruitmentJooqRepositoryImpl(
                     RECRUITMENT.TYPE.asNonNullField(),
                     RECRUITMENT.TITLE.asNonNullField(),
                     RECRUITMENT.ENDED_AT,
+                    RECRUITMENT.AUTHOR_ID.asNonNullField(),
                     arrayAgg(RECRUITMENT_POSITION.POSITION_ID.asNonNullField()).orderBy(RECRUITMENT_POSITION.SEQUENCE),
+                    sum(RECRUITMENT_POSITION_GROUP.COUNT),
                 ).from(RECRUITMENT)
                 .applyCondition(condition)
                 .orderBy(RECRUITMENT.ID)
