@@ -13,5 +13,5 @@ val DefaultFixture: FixtureMonkey =
         .register(PositiveInt::class.java) {
             it
                 .giveMeBuilder<PositiveInt>()
-                .set("value", Arbitraries.integers().greaterOrEqual(0).lessOrEqual(1_000_000))
+                .set("value", Arbitraries.integers().greaterOrEqual(1).lessOrEqual(1_000_000))
         }.build()
