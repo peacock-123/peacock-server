@@ -57,7 +57,7 @@ class RecruitmentJooqRepositoryImplTest(
             val result = recruitmentJooqRepository.search(condition)
 
             // then
-            assert(result.size == 1)
+            assert(result.numberOfElements == 1)
             assert(result.first().type == RecruitmentType.STURY)
         }
 
@@ -94,7 +94,7 @@ class RecruitmentJooqRepositoryImplTest(
             val result = recruitmentJooqRepository.search(condition)
 
             // then
-            assert(result.size == 1)
+            assert(result.numberOfElements == 1)
             assert(result.first().type == RecruitmentType.STURY)
         }
 
@@ -131,7 +131,7 @@ class RecruitmentJooqRepositoryImplTest(
             val result = recruitmentJooqRepository.search(condition)
 
             // then
-            assert(result.size == 1)
+            assert(result.numberOfElements == 1)
             assert(result.first().type == RecruitmentType.PROJECT)
         }
 
@@ -162,7 +162,7 @@ class RecruitmentJooqRepositoryImplTest(
             val result = recruitmentJooqRepository.search(condition)
 
             // then
-            assert(result.size == 1)
+            assert(result.numberOfElements == 1)
             assert(result.first().title == "스터디")
         }
 
@@ -191,7 +191,7 @@ class RecruitmentJooqRepositoryImplTest(
             val result = recruitmentJooqRepository.search(condition)
 
             // then
-            assert(result.size == 10)
+            assert(result.numberOfElements == 10)
             assert(result.first().title == "스터디10")
         }
     }
