@@ -4,9 +4,11 @@ import com.navercorp.fixturemonkey.ArbitraryBuilder
 import com.navercorp.fixturemonkey.kotlin.giveMeBuilder
 import com.navercorp.fixturemonkey.kotlin.into
 import com.navercorp.fixturemonkey.kotlin.setExp
+import com.navercorp.fixturemonkey.kotlin.setLazyExp
 import com.peacock.core.domain.recruitment.Recruitment
 import com.peacock.core.domain.recruitment.RecruitmentPosition
 import com.peacock.core.domain.recruitment.RecruitmentPositionGroup
+import com.peacock.core.domain.recruitment.RecruitmentSkill
 import com.peacock.core.domain.recruitment.vo.RecruitmentId
 import com.peacock.core.domain.recruitment.vo.RecruitmentInterval
 import com.peacock.core.domain.recruitment.vo.RecruitmentMethod
@@ -45,15 +47,19 @@ enum class RecruitmentFixture(
                 .setExp(Recruitment::duration, STRING_ARBITRARY)
                 .setExp(Recruitment::method into RecruitmentMethod::contact, STRING_ARBITRARY)
                 .setExp(Recruitment::interval, RecruitmentInterval(RecruitmentInterval.Type.WEEKLY, 1))
-                .setExp(
+                .setLazyExp(
                     Recruitment::positionGroup,
+                ) {
                     DefaultFixture
                         .giveMeBuilder<RecruitmentPositionGroup>()
                         .setExp(RecruitmentPositionGroup::id, RecruitmentPositionGroupId(0))
                         .setExp(
                             RecruitmentPositionGroup::positions,
                             DefaultFixture.giveMeBuilder<RecruitmentPosition>().sampleList(1),
-                        ).sampleList(1),
-                )
+                        ).setExp(
+                            RecruitmentPositionGroup::skills,
+                            DefaultFixture.giveMeBuilder<RecruitmentSkill>().sampleList(1),
+                        ).sampleList(1)
+                }
     }
 }
