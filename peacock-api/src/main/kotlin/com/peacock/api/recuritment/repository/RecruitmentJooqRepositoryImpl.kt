@@ -33,6 +33,7 @@ class RecruitmentJooqRepositoryImpl(
                     RECRUITMENT.AUTHOR_ID.asNonNullField(),
                     arrayAgg(RECRUITMENT_POSITION.POSITION_ID.asNonNullField()).orderBy(RECRUITMENT_POSITION.SEQUENCE),
                     sum(RECRUITMENT_POSITION_GROUP.COUNT),
+                    RECRUITMENT.VIEW_COUNT.asNonNullField(),
                 ).from(RECRUITMENT)
                 .applyCondition(condition)
                 .orderBy(RECRUITMENT.ID)

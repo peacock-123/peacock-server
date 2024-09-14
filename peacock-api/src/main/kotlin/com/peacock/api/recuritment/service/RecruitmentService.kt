@@ -7,6 +7,7 @@ import com.peacock.api.recuritment.service.dto.SearchRecruitmentDto
 import com.peacock.core.domain.account.AccountRepository
 import com.peacock.core.domain.position.PositionRepository
 import com.peacock.core.domain.recruitment.vo.RecruitmentId
+import com.peacock.core.domain.vo.NonNegativeLong
 import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -41,8 +42,8 @@ class RecruitmentService(
                 endedAt = result.endedAt,
                 positions = result.positions.map { positions.getValue(it).name },
                 author = accounts.getValue(result.authorId).email.name,
-                viewCount = 0,
-                totalCapacity = result.totalCapacity.toLong(),
+                viewCount = result.viewCount,
+                totalCapacity = NonNegativeLong(result.totalCapacity.toLong()),
             )
         }
     }

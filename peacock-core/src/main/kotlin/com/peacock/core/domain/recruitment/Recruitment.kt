@@ -7,6 +7,7 @@ import com.peacock.core.domain.recruitment.vo.RecruitmentMethod
 import com.peacock.core.domain.recruitment.vo.RecruitmentProcessType
 import com.peacock.core.domain.recruitment.vo.RecruitmentPurpose
 import com.peacock.core.domain.recruitment.vo.RecruitmentType
+import com.peacock.core.domain.vo.NonNegativeLong
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -37,6 +38,7 @@ data class Recruitment(
     @MappedCollection(idColumn = "recruitment_id", keyColumn = "sequence")
     val positionGroup: List<RecruitmentPositionGroup>,
     val authorId: AccountId,
+    val viewCount: NonNegativeLong = NonNegativeLong(0),
 ) {
     init {
         require(title.isNotBlank()) { "제목은 필수입니다" }

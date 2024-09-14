@@ -14,6 +14,7 @@ create table recruitment
     duration           varchar(255)             not null,
     interval_type      varchar(50)              not null,
     interval_frequency int,
+    view_count         bigint                   not null,
     author_id          bigint                   not null
 );
 
