@@ -4,6 +4,7 @@ import com.peacock.core.domain.account.vo.AccountId
 import com.peacock.core.domain.position.vo.PositionId
 import com.peacock.core.domain.recruitment.vo.RecruitmentId
 import com.peacock.core.domain.recruitment.vo.RecruitmentType
+import com.peacock.core.domain.vo.NonNegativeLong
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
@@ -16,8 +17,10 @@ data class RecruitmentSearchResult(
     private val rawAuthorId: Long,
     private val rawPositions: Array<Long>,
     val totalCapacity: BigDecimal,
+    private val rawViewCount: Long,
 ) {
     val id: RecruitmentId = RecruitmentId(rawId)
     val authorId: AccountId = AccountId(rawAuthorId)
     val positions = rawPositions.map { PositionId(it) }
+    val viewCount: NonNegativeLong = NonNegativeLong(rawViewCount)
 }

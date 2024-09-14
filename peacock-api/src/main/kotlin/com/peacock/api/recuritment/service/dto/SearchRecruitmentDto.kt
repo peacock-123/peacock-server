@@ -2,6 +2,7 @@ package com.peacock.api.recuritment.service.dto
 
 import com.peacock.core.domain.recruitment.vo.RecruitmentId
 import com.peacock.core.domain.recruitment.vo.RecruitmentType
+import com.peacock.core.domain.vo.NonNegativeLong
 import java.time.LocalDateTime
 
 data class SearchRecruitmentDto(
@@ -12,6 +13,6 @@ data class SearchRecruitmentDto(
     val endedAt: LocalDateTime?,
     val positions: List<String>,
     val author: String,
-    val viewCount: Long,
-    val totalCapacity: Long,
+    val viewCount: NonNegativeLong,
+    val totalCapacity: NonNegativeLong,
 )
