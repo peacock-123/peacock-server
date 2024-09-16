@@ -1,3 +1,7 @@
+plugins {
+    id("com.google.cloud.tools.jib") version "3.4.3"
+}
+
 dependencies {
     implementation(project(":peacock-core"))
     implementation(project(":peacock-support"))
@@ -19,6 +23,43 @@ dependencies {
     testImplementation("org.flywaydb:flyway-core")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.0.23")
+}
+
+jib {
+    from {
+        image = "openjdk:21-jdk-slim"
+    }
+
+    to {
+        image = "ghcr.io/peacock-123/peacock-server"
+        tags = setOf("latest", System.getenv("GITHUB_SHA"))
+        auth {
+            username = System.getenv("GH_USERNAME")
+            password = System.getenv("GH_TOKEN")
+        }
+    }
+
+    container {
+        ports = listOf("8080")
+        jvmFlags =
+            listOf(
+                "-Xms512m",
+                "-Xmx2048m",
+                "-XX:+UseContainerSupport",
+                "-XX:MaxRAMPercentage=75",
+                "-XX:+UseG1GC",
+                "-XX:MaxGCPauseMillis=200",
+                "-Djava.security.egd=file:/dev/./urandom",
+            )
+        environment =
+            mapOf(
+                "SPRING_PROFILES_ACTIVE" to System.getenv("SPRING_PROFILES_ACTIVE"),
+            )
+        user = "nobody:nogroup"
+        creationTime = "USE_CURRENT_TIMESTAMP"
+    }
+
+    containerizingMode = "packaged"
 }
 
 tasks.bootJar {
