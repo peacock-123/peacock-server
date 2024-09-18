@@ -10,7 +10,6 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 checkout scm
-                sh 'git submodule update --init'
             }
         }
 
