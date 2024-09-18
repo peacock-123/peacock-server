@@ -14,13 +14,16 @@ class KakaoAuthenticationCodeResolver(
     @Value("\${kakao.redirectUri}") private val redirectUri: String,
     private val kakaoHttpClient: KakaoHttpClient,
 ) : AuthenticationCodeResolver {
-    override fun resolve(code: AuthCode): Email {
+    override fun resolve(
+        code: AuthCode,
+        redirectUri: String?,
+    ): Email {
         val accessToken =
             kakaoHttpClient
                 .getToken(
                     grantType = REQUIRED_GRANT_TYPE,
                     clientId = clientId,
-                    redirectUri = redirectUri,
+                    redirectUri = redirectUri ?: this.redirectUri,
                     clientSecret = clientSecret,
                     code = code.value,
                 ).accessToken

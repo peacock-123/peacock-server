@@ -20,8 +20,9 @@ class AccountService(
     fun signIn(
         code: AuthCode,
         provider: AuthProvider,
+        redirectUri: String?,
     ): AccountId {
-        val email = authenticationCodeResolverFactory.getResolver(provider).resolve(code)
+        val email = authenticationCodeResolverFactory.getResolver(provider).resolve(code, redirectUri)
         val account = accountRepository.findByEmail(email) ?: signUp(email, provider)
 
         return account.id

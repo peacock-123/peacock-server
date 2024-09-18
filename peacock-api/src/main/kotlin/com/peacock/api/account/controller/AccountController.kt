@@ -31,6 +31,7 @@ class AccountController(
             accountService.signIn(
                 code = AuthCode(signUpRequest.code),
                 provider = signUpRequest.provider,
+                redirectUri = signUpRequest.redirectUri,
             )
 
         val token =

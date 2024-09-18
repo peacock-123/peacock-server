@@ -34,7 +34,7 @@ class KakaoAuthenticationCodeResolverTest {
         val code = AuthCode("code")
 
         // when
-        val expected = resolver.resolve(code)
+        val expected = resolver.resolve(code, redirectUri)
 
         // then
         println(expected)
