@@ -35,7 +35,6 @@ class StaticController(
     fun getStatic(): StaticResponse {
         val positions = positionRepository.findByOrderByIdAsc()
 
-        println("cache miss")
         return StaticResponse(
             positions =
                 positions.map { position ->
