@@ -37,8 +37,6 @@ data class GetRecruitmentResponse(
     data class PositionGroup(
         val id: RecruitmentPositionGroupId,
         val count: PositiveInt,
-        val createdAt: LocalDateTime = LocalDateTime.now(),
-        val updatedAt: LocalDateTime = LocalDateTime.now(),
         val positions: List<PositionId>,
         val skills: List<SkillId>,
     )
