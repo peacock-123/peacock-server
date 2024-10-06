@@ -10,10 +10,10 @@ import java.time.LocalDateTime
 @Table
 data class Position(
     @Id
-    val id: PositionId,
+    val id: PositionId = PositionId(0),
     @CreatedDate
-    val createdAt: LocalDateTime,
+    val createdAt: LocalDateTime = LocalDateTime.now(),
     @LastModifiedDate
-    val updatedAt: LocalDateTime,
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
     val name: String,
 )
