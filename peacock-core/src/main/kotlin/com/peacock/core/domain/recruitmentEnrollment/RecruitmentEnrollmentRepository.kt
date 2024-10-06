@@ -1,0 +1,6 @@
+package com.peacock.core.domain.recruitmentEnrollment
+
+import com.peacock.core.domain.recruitmentEnrollment.vo.RecruitmentEnrollmentId
+import org.springframework.data.repository.ListCrudRepository
+
+interface RecruitmentEnrollmentRepository : ListCrudRepository<RecruitmentEnrollment, RecruitmentEnrollmentId>
