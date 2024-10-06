@@ -1,5 +1,7 @@
 package com.peacock.core.domain.recruitmentEnrollment
 
+import com.peacock.core.domain.position.vo.PositionId
+import com.peacock.core.domain.recruitmentEnrollment.vo.RecruitmentEnrollmentContact
 import com.peacock.core.domain.recruitmentEnrollment.vo.RecruitmentEnrollmentId
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
@@ -12,4 +14,7 @@ data class RecruitmentEnrollment(
     val id: RecruitmentEnrollmentId,
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now(),
+    val positionId: PositionId,
+    val contact: RecruitmentEnrollmentContact,
+    val resumeLink: String,
 )
