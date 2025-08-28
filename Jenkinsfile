@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     env.GITHUB_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD | cut -c 1-10').trim()
-                    env.DOCKER_IMAGE_NAME = "ghrc.io/peacock-123/peacock-server"
+                    env.DOCKER_IMAGE_NAME = "ghcr.io/peacock-123/peacock-server"
                 }
             }
         }
